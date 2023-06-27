@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital List</title>
+    <style>
+        body {
+            background-color: #F0F8FF; /* 设置背景颜色为淡蓝色 */
+        }
+        table {
+            border-collapse: collapse; /* 合并表格边框 */
+            width: 100%;
+            max-width: 1200px; /* 设置表格最大宽度 */
+            margin: 0 auto; /* 居中显示表格 */
+            font-size: 14px; /* 设置字体大小 */
+        }
+        th, td {
+            border: 1px solid #ddd; /* 设置表格边框样式 */
+            padding: 8px; /* 设置单元格内边距 */
+            text-align: center; /* 设置单元格文本居中 */
+        }
+        th {
+            background-color: #F0FFFF; /* 设置表头背景颜色 */
+        }
+        tr:nth-child(even) {
+            background-color: #F0F8FF; /* 设置偶数行背景颜色 */
+        }
+        tr:hover {
+            background-color: #ADD8E6; /* 设置鼠标悬停时的背景颜色 */
+        }
+        table {
+            margin: 0 auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        button {
+            background-color: #2c3e50;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<h1>全部医院</h1>
+<form th:action="@{/search}" method="get">
+    <select name="area">
+        <option value="">请选择区域</option>
+        <option value="全部">全部</option>
+        <option value="岳麓区">岳麓区</option>
+        <option value="天心区">天心区</option>
+        <!-- Add more options for other areas -->
+    </select>
+    <input type="submit" value="查询">
+</form>
+<table id="dataTable">
+    <thead>
+    <tr>
+        <th>ID(点击可查看医院具体信息)</th>
+        <th>医院名称</th>
+        <th>医院所在区</th>
+        <th>院长</th>
+        <th>建院时间</th>
+        <th>医院类型</th>
+        <th>医院级别</th>
+        <th>医院电话</th>
+        <th>医院具体地址</th>
+        <th>医院网站</th>
+        <th>医院科室数量</th>
+        <th>医院床位</th>
+        <th>医院年诊数(w)</th>
+        <th>是否支持预约</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hospital: ${hospitalList}">
+        <td>
+            <a th:href="@{/hosInfoShow/{id}(id=${hospital.id})}">
+                <span th:text="${hospital.id}"></span>
+            </a>
+        </td>
+        <td th:text="${hospital.hospitalName}"></td>
+        <td th:text="${hospital.hospitalArea}"></td>
+        <td th:text="${hospital.hospitalDeanName}"></td>
+        <td th:text="${hospital.hospitalYear}"></td>
+        <td th:text="${hospital.hospitalNature}"></td>
+        <td th:text="${hospital.hospitalGrade}"></td>
+        <td th:text="${hospital.hospitalPhone}"></td>
+        <td th:text="${hospital.hospitalAddress}"></td>
+        <td>
+            <a th:href="${hospital.hospitalUrl}" th:text="${hospital.hospitalUrl}" target="_blank"></a>
+        </td>
+        <td th:text="${hospital.hospitalOfficesNum}"></td>
+        <td th:text="${hospital.hospitalBedNum}"></td>
+        <td th:text="${hospital.outpatientNum}"></td>
+        <td>
+            <span th:if="${hospital.isOpen==1}">是</span>
+            <span th:if="${hospital.isOpen==0}">否</span>
+            <a th:if="${hospital.isOpen==1}" th:href="@{/office/{name}(name=${hospital.hospitalName})}">预约</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

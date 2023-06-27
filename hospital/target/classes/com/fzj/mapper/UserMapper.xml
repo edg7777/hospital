@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzj.mapper.UserMapper">
+    <select id="findUserById" resultType="User">
+        select *
+        from h_user where id=#{id};
+    </select>
+
+    <select id="findUserbByIdef" resultType="User">
+        select * from h_user where user_idef=#{Idenf}
+    </select>
+
+    <select id="findUserByName" resultType="User">
+        select * from h_user where name=#{name}
+    </select>
+
+    <select id="findUserByEmail" resultType="User">
+        select * from h_user where email=#{email}
+    </select>
+
+    <select id="findUseByPhone" resultType="User">
+        select * from h_user where phone=#{phone}
+    </select>
+
+
+    <insert id="insertUser">
+        insert into h_user(email,password,name,phone) values(#{email},#{password},#{name},#{phone})
+    </insert>
+
+    <update id="modifyPassByEmail">
+        update h_user set password=#{new_password} where email=#{email}
+    </update>
+
+    <update id="modifySexById">
+        update h_user set sex=#{sex} where id=#{id}
+    </update>
+
+    <update id="modifyPhoneByEmail">
+        update h_user set phone=#{phone} where email=#{email}
+    </update>
+
+    <update id="modifyEmailByIdef">
+        update h_user set email=#{email} where user_idef=#{idenf}
+    </update>
+
+    <update id="updateUserInfo">
+        update h_user set user_idef=#{user.userIdef},name=#{user.name},phone=#{user.phone},sex=#{user.sex},email=#{user.email}
+        where id=#{user.id}
+    </update>
+</mapper>

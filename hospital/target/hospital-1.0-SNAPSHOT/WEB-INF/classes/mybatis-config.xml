@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?> <!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!--    <properties resource="jdbc.properties"/>-->
+    <!--     设置Mybatis的全局配置 -->
+    <settings>
+        <!--         将下划线自动映射为驼峰 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+        <!--         开启延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+    </settings>
+    <!--     开启别名的配置，让查询语句能够正确输出返回类型 -->
+
+    <!--     引入映射文件 -->
+    <mappers>
+<!--        <package name="com.fzj.mapper"/>-->
+        <mapper resource="com/fzj/mapper/UserMapper.xml"></mapper>
+    </mappers>
+</configuration>

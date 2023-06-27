@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        body {
+            background-color: #F0F8FF;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #008B8B;
+            margin-top: 50px;
+        }
+        form {
+            background-color: #FFFFFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px #888888;
+            width: 400px;
+            margin: 50px auto;
+        }
+        input[type="email"], input[type="password"], input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        button[type="submit"] {
+            background-color: #008B8B;
+            color: #FFFFFF;
+            padding: 10px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        a {
+            color: #008B8B;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        label {
+            display: inline-block;
+            width: 100px;
+            text-align: right;
+            margin-right: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .captcha-group {
+            display: flex;
+            align-items: center;
+        }
+        #captchaImg {
+            margin-left: 20px;
+        }
+        #refreshBtn {
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        input[type="email"], input[type="password"], input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 2px solid #008B8B; /* Add a border */
+            background-color: #E0FFFF; /* Change the background color */
+            font-size: 16px; /* Increase the font size */
+            width: 100%;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<h1>Login</h1>
+<form th:action="@{/login}" method="post">
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+    </div>
+    <div class="form-group captcha-group">
+        <label for="verficationCode">Verification Code:</label>
+        <input type="text" id="verficationCode" name="verficationCode" required>
+        <img src="http://localhost:8082/hospital/verify_code"alt="Verification Code" id="captchaImg">
+        <button type="button" id="refreshBtn" onclick="refreshCaptcha()">Refresh</button>
+    </div>
+    <div th:if="${error}" style="color: red; margin-bottom: 20px;">
+        <span th:text="${error}"></span>
+    </div>
+    <button type="submit">Login</button>
+</form>
+<div class="links">
+    <a th:href="@{/sign}">Sign up</a>
+    <a th:href="@{/modifyPassword}">Modify Password</a>
+</div>
+<script>
+    function refreshCaptcha() {
+        var captchaImg = document.getElementById('captchaImg');
+        captchaImg.src = "http://localhost:8082/hospital/verify_code?"+ new Date().getTime();
+    }
+</script>
+</body>
+</html>

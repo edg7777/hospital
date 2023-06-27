@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzj.mapper.OfficeMapper">
+    <select id="findOfficeByHosName" resultType="Office">
+        select * from office where hospital_name=#{name}
+    </select>
+
+    <select id="findOfficeById" resultType="Office">
+        select * from office where id=#{id}
+    </select>
+
+    <select id="findOfficeByHosNameAndOfficeName" resultType="Office">
+        select * from office where hospital_name=#{arg0} and offices_name=#{arg1}
+    </select>
+</mapper>

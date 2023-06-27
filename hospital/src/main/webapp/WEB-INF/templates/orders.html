@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>预约信息</title>
+    <style>
+        body {
+            background-color: #E6F2F8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #ddd;
+            text-align: center;
+        }
+        h1 {
+            color: #0080FF;
+        }
+        label {
+            color: #0080FF;
+            display: block;
+            margin-bottom: 10px;
+        }
+        input, select {
+            border: 2px solid #0080FF;
+            border-radius: 5px;
+            padding: 5px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 300px;
+        }
+        button {
+            background-color: #0080FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0059b3;
+        }
+    </style>
+</head>
+<body>
+<form th:action="@{/submitOrder}" id="appointmentForm" th:method="post">
+    <h1>预约信息</h1>
+    <label for="userIdef">身份证号码:</label>
+    <input type="text" id="userIdef" name="userIdef" required>
+    <label for="transacDate">预约日期:</label>
+    <input type="date" id="transacDate" name="transacDate" required>
+    <label for="transacTime">预约时间:</label>
+    <select id="transacTime" name="transacTime" required>
+        <option value="">选择时间段</option>
+        <option value="8:00-9:00">8:00-9:00</option>
+        <option value="9:00-10:00">9:00-10:00</option>
+        <option value="10:00-11:00">10:00-11:00</option>
+        <option value="11:00-12:00">11:00-12:00</option>
+        <option value="12:00-13:00">12:00-13:00</option>
+        <option value="13:00-14:00">13:00-14:00</option>
+        <option value="14:00-15:00">14:00-15:00</option>
+        <option value="15:00-16:00">15:00-16:00</option>
+        <option value="16:00-17:00">16:00-17:00</option>
+        <option value="17:00-18:00">17:00-18:00</option>
+        <option value="18:00-19:00">18:00-19:00</option>
+    </select>
+    <button type="submit">提交</button>
+    <span th:text="${error}"></span>
+</form>
+</body>
+</html>

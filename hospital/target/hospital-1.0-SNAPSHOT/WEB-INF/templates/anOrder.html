@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<h1>订单详细信息</h1>
+<form th:action="@{/updateOrder/}+${order.id}" id="appointmentForm" th:method="post">
+    <label for="transactDate">预约日期:</label>
+    <input type="date" id="transactDate" name="transactDate" th:value="${order.transactDate}" required>
+    <label for="transactTime">预约时间:</label>
+    <select id="transactTime" name="transactTime" required>
+        <option value="">选择时间段</option>
+        <option value="8:00-9:00" th:selected="${order.transactTime == '8:00-9:00'}">8:00-9:00</option>
+        <option value="9:00-10:00" th:selected="${order.transactTime == '9:00-10:00'}">9:00-10:00</option>
+        <option value="10:00-11:00" th:selected="${order.transactTime == '10:00-11:00'}">10:00-11:00</option>
+        <option value="11:00-12:00" th:selected="${order.transactTime == '11:00-12:00'}">11:00-12:00</option>
+        <option value="12:00-13:00" th:selected="${order.transactTime == '12:00-13:00'}">12:00-13:00</option>
+        <option value="13:00-14:00" th:selected="${order.transactTime == '13:00-14:00'}">13:00-14:00</option>
+        <option value="14:00-15:00" th:selected="${order.transactTime == '14:00-15:00'}">14:00-15:00</option>
+        <option value="15:00-16:00" th:selected="${order.transactTime == '15:00-16:00'}">15:00-16:00</option>
+        <option value="16:00-17:00" th:selected="${order.transactTime == '16:00-17:00'}">16:00-17:00</option>
+        <option value="17:00-18:00" th:selected="${order.transactTime == '17:00-18:00'}">17:00-18:00</option>
+        <option value="18:00-19:00" th:selected="${order.transactTime == '18:00-19:00'}">18:00-19:00</option>
+    </select>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

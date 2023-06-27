@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzj.mapper.OrderRecordsMapper">
+    <select id="findOrderByUserId" resultType="OrderRecords">
+        select * from order_records where user_id=#{id}
+    </select>
+
+    <insert id="saveOrderRecord">
+        insert into order_records(user_id,hospital_name,offices_name,doctor_name,transact_date,transact_time)
+        values(#{orderRecords.UserID},#{orderRecords.hospitalName},#{orderRecords.officesName},#{orderRecords.doctorName},
+        #{orderRecords.transactDate},#{orderRecords.transactTime})
+    </insert>
+
+    <delete id="deleteOrder">
+        delete from order_records where id=#{id}
+    </delete>
+
+    <select id="findOrderById" resultType="OrderRecords">
+        select * from order_records where id=#{id}
+    </select>
+
+    <update id="updateOrderRecords">
+        update order_records set transact_date=#{orderRecords.transactDate},transact_time=#{orderRecords.transactTime} where id=#{orderRecords.id}
+    </update>
+
+    <select id="findAllOrder" resultType="OrderRecords">
+        select * from order_records
+    </select>
+</mapper>

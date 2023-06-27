@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Doctor List</title>
+  <style>
+    body {
+      background-color: #f2f7ff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #2c3e50;
+      margin-top: 40px;
+    }
+    h2 {
+      color: #2c3e50;
+      margin-top: 40px;
+    }
+    table {
+      border-collapse: collapse;
+      margin: 20px;
+      width: 80%;
+      max-width: 800px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #2c3e50;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    button {
+      background-color: #2c3e50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    a {
+      color: #2c3e50;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+<h1>科室医生列表</h1>
+<h2>请选择要预约的医生</h2>
+<table>
+  <thead>
+  <tr>
+    <th>姓名(点击可查看更详细信息并进行预约)</th>
+    <th>医院名称</th>
+    <th>年龄</th>
+    <th>性别</th>
+    <th>学位</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="doctor : ${doctorList}">
+    <td><a th:href="@{/doctor/{hospital_name}/{office_name}/{doctor_name}(hospital_name=${doctor.hospitalName}, office_name=${doctor.officeName}, doctor_name=${doctor.name})}" th:text="${doctor.name}"></a></td>
+    <td th:text="${doctor.hospitalName}"></td>
+    <td th:text="${doctor.age}"></td>
+    <td th:text="${doctor.sex}"></td>
+    <td th:text="${doctor.degree}"></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>修改个人信息</title>
+    <style>
+        body {
+            background-color: #f2f7fd;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #337ab7;
+        }
+        form {
+            margin: 0 auto;
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        label {
+            display: inline-block;
+            width: 120px;
+            text-align: left;
+            margin-right: 10px;
+        }
+        input[type="text"], input[type="radio"] {
+            padding: 5px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #337ab7;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 3px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #286090;
+        }
+    </style>
+</head>
+<body>
+<h1>修改个人信息</h1>
+<form th:action="@{/editUser/}+${user.id}" method="post">
+    <input type="hidden" name="_method" value="put">
+    <label>身份证号:</label><input type="text" name="userIdef" th:value="${user.userIdef}"><br>
+    <label>姓名:</label><input type="text" name="name" th:value="${user.name}"><br>
+    <label>手机号码:</label><input type="text" name="phone" th:value="${user.phone}"><br>
+    <label>邮箱:</label><input type="text" name="email" th:value="${user.email}"><br>
+    <label>性别:</label>
+    <input type="radio" name="sex" value="男" th:field="${user.sex}">男
+    <input type="radio" name="sex" value="女" th:field="${user.sex}">女
+    <br>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>

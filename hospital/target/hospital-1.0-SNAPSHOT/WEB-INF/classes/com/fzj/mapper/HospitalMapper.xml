@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.fzj.mapper.HospitalMapper">
+    <select id="findHospitalById" resultType="Hospital">
+        select * from hospital where id=#{id}
+    </select>
+
+    <select id="findHospitalByName" resultType="Hospital">
+        select * from hospital where name=#{name}
+    </select>
+
+
+
+
+    <select id="findHosByArea" resultType="Hospital">
+        select * from hospital where hospital_area=#{area}
+    </select>
+
+
+
+    <select id="findAllHos" resultType="Hospital">
+        select * from hospital
+    </select>
+</mapper>

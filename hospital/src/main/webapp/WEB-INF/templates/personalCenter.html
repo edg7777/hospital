@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <style>
+        body {
+            background-color: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #337ab7;
+            text-align: center;
+        }
+        p {
+            margin: 10px 0;
+            text-align: center;
+        }
+        span {
+            color: #555;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .btn {
+            margin: 0 10px;
+            padding: 6px 10px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            background-image: none;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            color: #fff;
+            background-color: #337ab7;
+            border-color: #2e6da4;
+        }
+        .btn:hover {
+            color: #fff;
+            background-color: #286090;
+            border-color: #204d74;
+        }
+    </style>
+</head>
+<body>
+<h1>用户具体信息</h1>
+<p>身份证号：<span th:text="${user.userIdef}"></span></p>
+<p>姓名：<span th:text="${user.name}"></span></p>
+<p>性别：<span th:text="${user.sex}"></span></p>
+<p>电话号码：<span th:text="${user.phone}"></span></p>
+<p>邮箱：<span th:text="${user.email}"></span></p>
+<div class="btn-container">
+    <a th:href="@{/editUser/}+${user.id}" class="btn btn-primary">编辑用户信息</a>
+    <a th:href="@{/orderRecords/}+${user.id}" class="btn btn-primary">查看自己预约信息</a>
+</div>
+</body>
+</html>

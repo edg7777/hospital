@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>预约记录</title>
+    <style>
+        body {
+            background-color: #f2f7fd;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #337ab7;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #337ab7;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+        .delete-button {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        function confirmDelete() {
+            return confirm("确认要取消该预约吗?");
+        }
+    </script>
+</head>
+<body>
+<h1>预约记录</h1>
+<table>
+    <thead>
+    <tr>
+        <th>预约序号</th>
+        <th>预约医院名称</th>
+        <th>预约科室名称</th>
+        <th>医生姓名</th>
+        <th>预约日期</th>
+        <th>预约时间段</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="order : ${orderRecordsList}">
+        <td th:text="${order.id}"></td>
+        <td th:text="${order.hospitalName}"></td>
+        <td th:text="${order.officesName}"></td>
+        <td th:text="${order.doctorName}"></td>
+        <td th:text="${order.transactDate}"></td>
+        <td th:text="${order.transactTime}"></td>
+        <td>
+            <form th:action="@{/deleteOrder/{id}(id=${order.id})}" method="post" onsubmit="return confirmDelete()">
+                <button type="submit" class="delete-button">爽约</button>
+            </form>
+            <a th:href="@{/order/{id}(id=${order.id})}">更改预约信息</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

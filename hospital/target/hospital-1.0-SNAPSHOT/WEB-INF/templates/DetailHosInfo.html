@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hospital Information</title>
+    <style>
+        body {
+            background-color: lightblue;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin: auto;
+            max-width: 50%;
+            height: auto;
+        }
+
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 50%;
+        }
+
+        td {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid black;
+        }
+
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        </style>
+</head>
+<body>
+<div>
+    <h1 th:text="${hospital.hospitalName}">Hospital Name</h1>
+    <img th:src="@{|data:image/jpg;base64,${base64Image}|}" alt="Hospital Image"/>
+    <table>
+        <tr>
+            <td>所在区</td>
+            <td th:text="${hospital.hospitalArea}"></td>
+        </tr>
+        <tr>
+            <td>院长名称</td>
+            <td th:text="${hospital.hospitalDeanName}"></td>
+        </tr>
+        <tr>
+            <td>建院时间</td>
+            <td th:text="${hospital.hospitalYear}"></td>
+        </tr>
+        <tr>
+            <td>医院类型</td>
+            <td th:text="${hospital.hospitalNature}"></td>
+        </tr>
+        <tr>
+            <td>医院级别</td>
+            <td th:text="${hospital.hospitalGrade}"></td>
+        </tr>
+        <tr>
+            <td>医院电话</td>
+            <td th:text="${hospital.hospitalPhone}"></td>
+        </tr>
+        <tr>
+            <td>医院简介</td>
+            <td th:text="${hospital.hospitalAbout}"></td>
+        </tr>
+        <tr>
+            <td>医院荣誉</td>
+            <td th:text="${hospital.hospitalHonor}"></td>
+        </tr>
+        <tr>
+            <td>医院网址</td>
+            <td><a th:href="${hospital.hospitalUrl}" th:text="${hospital.hospitalUrl}" target="_blank"></a></td>
+        </tr>
+        <tr>
+            <td>医院地址</td>
+            <td th:text="${hospital.hospitalAddress}"></td>
+        </tr>
+        <tr>
+            <td>医院科室数量</td>
+            <td th:text="${hospital.hospitalOfficesNum}"></td>
+        </tr>
+        <tr>
+            <td>医院床位数</td>
+            <td th:text="${hospital.hospitalBedNum}"></td>
+        </tr>
+        <tr>
+            <td>医院年诊数(w)</td>
+            <td th:text="${hospital.outpatientNum}"></td>
+        </tr>
+        <tr>
+            <td>是否支持预约</td>
+            <td>
+                <span th:if="${hospital.isOpen==1}">是</span>
+                <span th:if="${hospital.isOpen==0}">否</span>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>
